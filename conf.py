@@ -13,10 +13,10 @@ import tinkerer.paths
 project = 'Read Modify Write'
 
 # Change this to the tagline of your blog
-tagline = 'Add intelligent tagline here'
+tagline = ''
 
 # Change this to the description of your blog
-description = 'This is an awesome blog'
+description = ''
 
 # Change this to your name
 author = 'Jeremy Billheimer'
@@ -38,7 +38,7 @@ disqus_shortname = None
 html_favicon = '_static/tinkerer.ico'
 
 # Pick another Tinkerer theme or use your own
-html_theme = 'flat'
+html_theme = 'flat_jgb'
 
 # Theme-specific options, see docs
 html_theme_options = {}
