@@ -15,7 +15,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Hello World &mdash; Read Modify Write</title>
+        <title>Memory alignment on ESP8266 - Exception(9) &mdash; Read Modify Write</title>
             <link rel="stylesheet" href="../../../_static/normalize.css" type="text/css">
             <link rel="stylesheet" href="../../../_static/sphinx.css" type="text/css">
             <link rel="stylesheet" href="../../../_static/main.css" type="text/css">
@@ -28,7 +28,7 @@
         <script>window.jQuery || document.write('<script src="../../../_static/vendor/jquery-1.8.2.min.js"><\/script>')</script>
         <script src="../../../_static/plugins.js"></script>
         <script src="../../../_static/main.js"></script>
-        <link rel="search" title="Search" href="../../../search.html" /><link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.html" /><script type="text/javascript">
+        <link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="AVRDude on Windows 10" href="../../09/13/2016_09_13_avrdude_on_windows_10.html" /><link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.html" /><script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
         VERSION:     '1.6.0',
@@ -74,11 +74,25 @@
               <!--END JGB-->
             </ul>
           </nav><div class="main-container" role="main"><div class="main wrapper body clearfix"><article><div class="timestamp postmeta">
-            <span>July 21, 2017</span>
+            <span>December 15, 2016</span>
         </div>
-    <div class="section" id="hello-world">
-<h1>Hello World</h1>
-<p>First post! ;-)</p>
+    <div class="section" id="memory-alignment-on-esp8266-exception-9">
+<h1>Memory alignment on ESP8266 - Exception(9)</h1>
+<p>This one was tough to track down, but extremely obvious once I figured it out. &nbsp;The ESP8266 has limitations on accessing data through a pointer. &nbsp;Namely, 32 bit accesses need to be aligned on a 32 bit boundary, and 16 bit boundaries for a 16 bit access.</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span> <span class="kt">uint32_t</span> <span class="o">*</span><span class="n">ptr</span> <span class="p">){</span>
+
+    <span class="o">*</span><span class="n">ptr</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If the lowest 2 bits of ptr (the actual address) are not zeroes, you get Exception (9). &nbsp;This is easy to do if you have packed structs:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="nf">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">)){</span>
+    <span class="kt">uint8_t</span> <span class="n">something</span><span class="p">;</span>
+    <span class="kt">uint32_t</span> <span class="n">something_else</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">this_may_crash_t</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>If you pass a pointer from something_else to func, the compiler won’t know the pointer is unaligned and it cannot do anything about it. &nbsp;So you need to manually make sure your access is aligned. &nbsp;Simple, right?</p>
 </div>
 
     <div class="postmeta">
@@ -87,10 +101,17 @@
         </div>
         
         
-        </div></article><aside class="sidebar"><section><div class="widget">
+        </div><ul class="related clearfix">
+            <li class="left"></li>
+            <li class="right"><a href="../../09/13/2016_09_13_avrdude_on_windows_10.html">AVRDude on Windows 10</a> &raquo; </li>
+        </ul></article><aside class="sidebar"><section><div class="widget">
     <h1>Recent Posts</h1>
     <ul><li>
-            <a href="#">Hello World</a>
+            <a href="#">Memory alignment on ESP8266 - Exception(9)</a>
+        </li><li>
+            <a href="../../09/13/2016_09_13_avrdude_on_windows_10.html">AVRDude on Windows 10</a>
+        </li><li>
+            <a href="../../09/12/2016_09_12_xmega_usart_txd_pin_reset.html">AVR Xmega USART TXD pin reset</a>
         </li></ul>
 </div>
 </section><section><div class="widget" id="searchbox" role="search">
