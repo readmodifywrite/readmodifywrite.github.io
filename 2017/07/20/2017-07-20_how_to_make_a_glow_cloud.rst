@@ -36,11 +36,13 @@ Things you need
 
 - Hot glue gun.
 
+- Polyfill stuffing. You can get this at any craft store.
+
 - Plastic 32 oz bottle. Empty, obviously.
 
 - Some LEDs. I'm using some leftover WS2812b LED strip. Mine have the silicone waterproofing, which as you'll see later will be useful. Something like a Hue light bulb could work too. Just don't use an incandescent bulb, or anything that gets hot! Glow clouds are extremely flammable!
 
-- Some way to control your LEDs. For most, some kind of Arduino is the obvious choice here. I build my own controllers, so if you don't recognize the board I'm using, that's why. I'm assuming you have basic soldering and wiring tools, so I won't list those here.
+- Some way to control your LEDs. For most, some kind of Arduino is the obvious choice here. `I build my own controllers <http://chromatron.io>`_, so if you don't recognize the board I'm using, that's why. I'm assuming you have basic soldering and wiring tools, so I won't list those here.
 
 - DC power jack. You can find these on Amazon. They have screw connections, which makes them indispensable for doing little projects like this.
 
