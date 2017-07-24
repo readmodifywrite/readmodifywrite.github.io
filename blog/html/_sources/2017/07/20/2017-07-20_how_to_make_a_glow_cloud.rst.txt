@@ -230,7 +230,7 @@ Great, now do the same thing with the power jack. Be gentle with the stand, the 
 .. image:: 2017-07-20_glow_cloud_build/IMG_20170720_130438.jpg
     :width: 100%
 
-Now we something like this:
+Now we have something like this:
 
 .. image:: 2017-07-20_glow_cloud_build/IMG_20170720_131025.jpg
     :width: 100%
