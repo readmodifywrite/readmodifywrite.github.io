@@ -96,7 +96,7 @@ Analog/PWM
 - 12 volts
 - PWM is however fast your controller can go
 
-Analog strips are driving with 3 PWM channels, 1 each for red, green, and blue. The entire strip will be the same color. Power is 12 volts (typically, though 24 volt strips do exist). The color depth is dependent on your PWM controller. I have a design which is 16 bits, so I actually have 48 bit color resolution (which is overkill at maximum brightness, but means my color resolution is still excellent at <1% brightness).
+Analog strips are driven with 3 PWM channels, 1 each for red, green, and blue. The entire strip will be the same color. Power is 12 volts (typically, though 24 volt strips do exist). The color depth is dependent on your PWM controller. I have a design which is 16 bits, so I actually have 48 bit color resolution (which is overkill at maximum brightness, but means my color resolution is still excellent at <1% brightness).
 
 While the addressable pixel strips are more popular, if you just need to produce a ton of light over a wide area at the same color, these are still a pretty good value.
 
